@@ -22,7 +22,7 @@ pod "LocalFileManager"
 
 ## Author
 
-asashin227, asakura_s@setjapan.co.jp
+Asakura Shinsuke, asakura_s@setjapan.co.jp
 
 ## License
 

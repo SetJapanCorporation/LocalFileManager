@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'LocalFileManager'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of LocalFileManager.'
+  s.summary          = 'LocalFileManager is wraped FileManager using easyeary.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/asashin227/LocalFileManager'
+  s.homepage         = 'https://github.com/SetJapanCorporation/LocalFileManager'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'asashin227' => 'asakura_s@setjapan.co.jp' }
-  s.source           = { :git => 'https://github.com/asashin227/LocalFileManager.git', :tag => s.version.to_s }
+  s.author           = { 'Asakura Shinsuke' => 'asakura_s@setjapan.co.jp' }
+  s.source           = { :git => 'https://github.com/SetJapanCorporation/LocalFileManager.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
