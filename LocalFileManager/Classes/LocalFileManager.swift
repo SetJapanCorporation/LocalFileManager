@@ -86,7 +86,7 @@ public class LocalFileManager: NSObject {
         try list.forEachThrow() {
             filePath in
             do {
-                try files.append(File(path: path + filePath))
+                try files.append(File(path: path + "/" + filePath))
             } catch {
                 throw error
             }
