@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let rootViewController = UINavigationController.init(rootViewController: ViewController())
+        rootViewController.topViewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back",
+                                                                                                 style: .plain,
+                                                                                                 target: nil,
+                                                                                                 action: nil)
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
         return true
     }
 

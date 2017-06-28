@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		CE38B0461F0399C100F16C73 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38B0451F0399C100F16C73 /* ViewModel.swift */; };
+		CE38B0481F0399D500F16C73 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38B0471F0399D500F16C73 /* View.swift */; };
 		EAF243581633809D8C54850B /* Pods_LocalFileManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E53DFF1804A4C61D6A0C80 /* Pods_LocalFileManager_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		84E53DFF1804A4C61D6A0C80 /* Pods_LocalFileManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalFileManager_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0EC249CC14422F7665AB43 /* Pods-LocalFileManager_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalFileManager_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalFileManager_Tests/Pods-LocalFileManager_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F1CA09C4107360E06F5E7F /* Pods_LocalFileManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalFileManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE38B0451F0399C100F16C73 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CE38B0471F0399D500F16C73 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		E144772E4E901266A337C562 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E28453955C42B40789BE2A91 /* LocalFileManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LocalFileManager.podspec; path = ../LocalFileManager.podspec; sourceTree = "<group>"; };
 		F0CADB22EE2BFD8362814C12 /* Pods-LocalFileManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalFileManager_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalFileManager_Example/Pods-LocalFileManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,11 +107,13 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				CE38B0471F0399D500F16C73 /* View.swift */,
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				CE38B0451F0399C100F16C73 /* ViewModel.swift */,
 			);
 			name = "Example for LocalFileManager";
 			path = LocalFileManager;
@@ -363,7 +369,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE38B0481F0399D500F16C73 /* View.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				CE38B0461F0399C100F16C73 /* ViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

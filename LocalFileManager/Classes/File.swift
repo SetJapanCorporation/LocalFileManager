@@ -26,7 +26,7 @@ public struct File {
     
     
     public var name: String {
-        return path!.components(separatedBy: "/").last ?? ""
+        return path!.components(separatedBy: "/").filter({ return !$0.isEmpty }).last ?? ""
     }
     
     public init(path: String) throws {
