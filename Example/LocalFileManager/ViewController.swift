@@ -12,7 +12,7 @@ import LocalFileManager
 class ViewController: UIViewController {    
     
     fileprivate let viewModel = ViewModel()
-    var dirPath = try! LocalFileManager().absolutePath(.libraryDirectory, path: "")
+    var dirPath = try! LocalFileManager().absolutePath(.libraryDirectory)
     
     override func loadView() {
         let homeView = View(frame: UIScreen.main.bounds)
@@ -44,7 +44,6 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UITableViewDelegate {
-    // MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }

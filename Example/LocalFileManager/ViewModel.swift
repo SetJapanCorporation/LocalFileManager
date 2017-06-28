@@ -34,7 +34,7 @@ extension ViewModel: UITableViewDataSource {
         let file = files[indexPath.row]
         
         cell.textLabel?.text = file.name
-        cell.detailTextLabel?.text = file.type == .file ? "file" : "directory"
+        cell.detailTextLabel?.text = file.type == .file ? "File" : "Directory"
         return cell
     }
     

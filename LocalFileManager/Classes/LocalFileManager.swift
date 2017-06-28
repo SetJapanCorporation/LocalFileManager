@@ -14,32 +14,34 @@ public class LocalFileManager: NSObject {
     ///   - targetDir: SearchPathDirectory.
     ///   - path: rerative path from targetDir.
     /// - Returns: Full path for rerative path
-    public func absolutePath(_ targetDir: FileManager.SearchPathDirectory = .libraryDirectory, path: String) throws -> String {
+    public func absolutePath(_ targetDir: FileManager.SearchPathDirectory = .libraryDirectory, path: String = "") throws -> String {
         let dirNames = path.components(separatedBy: "/")
-        let dir = NSSearchPathForDirectoriesInDomains(targetDir, .userDomainMask, true).first
-        var path = dir! + "/"
+        guard let dir = NSSearchPathForDirectoriesInDomains(targetDir, .userDomainMask, true).first else {
+            // TODO: Make correct error
+            throw NSError()
+        }
+        if path.isEmpty {
+            return dir
+        }
         
+        var path = dir
+        
+        let fileManager = FileManager.default
         try dirNames.forEachThrow() {
-            dirName in
+            dirName, breakLoop in
             if !dirName.isEmpty {
-                if dirName.range(of: ".") == nil && dirNames.last != dirName {
-                    path += dirName + "/"
-                    
-                    let fileManager = FileManager.default
-                    
-                    if !fileManager.fileExists(atPath: path) {
-                        do {
-                            try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-                        } catch {
-                            throw error
-                        }
-                    }
+                path += "/" + dirName
+                
+                if dirNames.last == dirName && dirName.range(of: ".") != nil {
+                    breakLoop()
                 }
-                else {
-                    path += dirName
+                
+                if !fileManager.fileExists(atPath: path) {
+                    try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 }
             }
         }
+        
         return path
     }
     
@@ -72,6 +74,13 @@ public class LocalFileManager: NSObject {
         try FileManager.default.removeItem(atPath: file.path!)
     }
     
+    /// Copy File
+    ///
+    /// - Parameters:
+    ///   - file: target
+    ///   - pathOfCopied: Copy destination path
+    /// - Returns: Copied file
+    /// - Throws: Error when saving file
     public func copy(_ file: File, to pathOfCopied: String) throws -> File? {
         var copy = File(data: file.data!)
         copy.path = pathOfCopied
@@ -79,12 +88,18 @@ public class LocalFileManager: NSObject {
         return copy
     }
     
+    
+    /// Retrieve all files under the path
+    ///
+    /// - Parameter path: Path
+    /// - Returns: Files at path
+    /// - Throws: Error when creating new object
     public func files(at path: String) throws -> [File]? {
         let list = try! FileManager.default.contentsOfDirectory(atPath: path)
         
         var files = [File]()
         try list.forEachThrow() {
-            filePath in
+            filePath, breakLoop in
             do {
                 try files.append(File(path: path + "/" + filePath))
             } catch {
@@ -98,9 +113,17 @@ public class LocalFileManager: NSObject {
 
 
 private extension Array {
-    func forEachThrow(operation: (Element) throws -> Void) rethrows {
+    func forEachThrow(operation: (Element, ()->Void) throws -> Void) rethrows {
+        var breakLoop = false
+        func breakFunction() {
+            breakLoop = true
+        }
+        
         for item in self {
-            try operation(item)
+            try operation(item, breakFunction)
+            if breakLoop {
+                break
+            }
         }
     }
 }

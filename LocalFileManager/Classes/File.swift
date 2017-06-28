@@ -34,6 +34,7 @@ public struct File {
         let info: NSDictionary = try! FileManager.default.attributesOfItem(atPath: path) as NSDictionary
         if FileAttributeType(rawValue: info.fileType()!) != FileAttributeType.typeDirectory {
             guard let data = FileManager.default.contents(atPath: path) else {
+                // TODO: Make correct error.
                 throw NSError()
             }
             self.data = data
