@@ -30,7 +30,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = try! File(path: dirPath).name
-        print("showing path: " + dirPath)
         viewModel.loadFiles(directoryPath: dirPath) {
             (view as! View).table.reloadData()
         }
