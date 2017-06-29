@@ -113,6 +113,11 @@ public class LocalFileManager: NSObject {
 
 
 private extension Array {
+    
+    /// It is possible to return an error forEach.
+    ///
+    /// - Parameter operation: Operations on elements.
+    /// - Throws: error
     func forEachThrow(operation: (Element, ()->Void) throws -> Void) rethrows {
         var breakLoop = false
         func breakFunction() {
