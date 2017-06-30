@@ -10,10 +10,10 @@ import UIKit
 import LocalFileManager
 
 class ViewModel: NSObject {
+    // Cell's ID
     let cellId = "CellId"
+    // Showing file
     var files = [File]()
-    
-    
     
     ///  Load files
     ///
@@ -24,7 +24,6 @@ class ViewModel: NSObject {
         files = try! LocalFileManager().files(at: directoryPath)!
         compleation()
     }
-    
     
     /// When selected tableView cell
     ///
