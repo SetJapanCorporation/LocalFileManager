@@ -40,7 +40,7 @@ LocalFileManager is Wrapped FileManager so that it can be used easily.
 
  // Load file.
  let filePath = try! fileManager.absolutePath(.libraryDirectory, path: "/hoge/fuga/img.png")
- let file = try! fileManager.load(filePath)
+ let file = try! File(path: filePath)
  
   // Delete file. 
  try! fileManager.delete(file)
