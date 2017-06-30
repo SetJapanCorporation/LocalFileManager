@@ -13,11 +13,24 @@ class ViewModel: NSObject {
     let cellId = "CellId"
     var files = [File]()
     
+    
+    
+    ///  Load files
+    ///
+    /// - Parameters:
+    ///   - directoryPath: path
+    ///   - compleation: didFinished load
     func loadFiles(directoryPath: String, compleation: ()->Void) {
         files = try! LocalFileManager().files(at: directoryPath)!
         compleation()
     }
     
+    
+    /// When selected tableView cell
+    ///
+    /// - Parameters:
+    ///   - viewController: Current viewcontroller
+    ///   - indexPath: Selected indexPath
     func selected(in viewController: UIViewController, indexPath: IndexPath) {
         let file = files[indexPath.row]
         if file.type == .directory {
