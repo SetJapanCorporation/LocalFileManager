@@ -11,20 +11,25 @@ public struct File {
     public enum FileType {
         case directory
         case file
+        case unknown
     }
     /// Data
     public var data: Data? = nil
     /// File path.
     public var path: String? = nil
     
-    /// File type 
+    /// File type
     /// directory or file.
     public var type: FileType {
-        let info: NSDictionary = try! FileManager.default.attributesOfItem(atPath: path!) as NSDictionary
-        if FileAttributeType(rawValue: info.fileType()!) == FileAttributeType.typeDirectory {
-            return .directory
+        do {
+            let info: NSDictionary = try FileManager.default.attributesOfItem(atPath: path!) as NSDictionary
+            if FileAttributeType(rawValue: info.fileType()!) == FileAttributeType.typeDirectory {
+                return .directory
+            }
+            return .file
+        } catch {
+            return .unknown
         }
-        return .file
     }
     
     /// Name of file
@@ -38,9 +43,9 @@ public struct File {
     ///
     /// - Parameter path: Path of file.
     /// - Throws: error when loading data.
-    public init(path: String) throws {
+    public init?(path: String) throws {
         self.path = path
-        let info: NSDictionary = try! FileManager.default.attributesOfItem(atPath: path) as NSDictionary
+        let info: NSDictionary = try FileManager.default.attributesOfItem(atPath: path) as NSDictionary
         if FileAttributeType(rawValue: info.fileType()!) != FileAttributeType.typeDirectory {
             guard let data = FileManager.default.contents(atPath: path) else {
                 // TODO: Make correct error.
@@ -56,5 +61,5 @@ public struct File {
     public init(data: Data) {
         self.data = data
     }
-
+    
 }

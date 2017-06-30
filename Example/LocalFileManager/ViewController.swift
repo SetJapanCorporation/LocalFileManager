@@ -29,9 +29,11 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = try! File(path: dirPath).name
-        viewModel.loadFiles(directoryPath: dirPath) {
-            (view as! View).table.reloadData()
+        if let file = try! File(path: dirPath) {
+            self.title = file.name
+            viewModel.loadFiles(directoryPath: dirPath) {
+                (view as! View).table.reloadData()
+            }
         }
     }
 
