@@ -8,7 +8,7 @@
 LocalFileManager is Wrapped FileManager so that it can be used easily.
 
 ## TODO
-- [ ] Add comment
+- [x] Add comment
 - [ ] Genarate Thumbnail image
 - [ ] Throw correct error
 - [ ] Use Optional class correctly
