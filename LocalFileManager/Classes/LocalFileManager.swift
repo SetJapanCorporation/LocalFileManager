@@ -85,13 +85,15 @@ public class LocalFileManager: NSObject {
     /// - Returns: Files at path
     /// - Throws: Error when creating new object
     public func files(at path: String) throws -> [File]? {
-        let list = try! FileManager.default.contentsOfDirectory(atPath: path)
+        let list = try FileManager.default.contentsOfDirectory(atPath: path)
         
         var files = [File]()
         try list.forEachThrow() {
             filePath, breakLoop in
             do {
-                try files.append(File(path: path + "/" + filePath))
+                if let file = try File(path: path + "/" + filePath) {
+                    files.append(file)
+                }
             } catch {
                 throw error
             }
