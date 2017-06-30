@@ -32,16 +32,6 @@ LocalFileManager is Wrapped FileManager so that it can be used easily.
  
  ```
 
-### How to get file data from file path.
-
-```swift
- let fileManager = LocalFileManager()
- let filePath = try! fileManager.absolutePath(.libraryDirectory, path: "/hoge/fuga/img.png")
- let file = File(path: filePath)
- 
- let data = file.data!
-
-```
 
 ### Manage file.
 

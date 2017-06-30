@@ -56,16 +56,6 @@ public class LocalFileManager: NSObject {
         
     }
     
-    /// Load file
-    ///
-    /// - Parameter fullPath: location of data
-    /// - Returns: data
-    /// - Throws: error
-    public func load(path: String) throws -> File! {
-        let file = try File(path: path)
-        return file
-    }
-    
     /// Delete file
     ///
     /// - Parameter fullPath: path lfor data
