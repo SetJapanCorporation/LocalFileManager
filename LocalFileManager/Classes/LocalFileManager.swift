@@ -52,7 +52,12 @@ public class LocalFileManager: NSObject {
     ///   - fullPath: Where you want to save
     /// - Throws: error
     public func save(_ file: File) throws {
-        try file.data?.write(to: URL(fileURLWithPath: file.path!), options: .atomic)
+        guard let data = file.data,
+            let path = file.path else {
+                // TODO: Make correct error.
+                throw NSError()
+        }
+        try data.write(to: URL(fileURLWithPath: path), options: .atomic)
         
     }
     
@@ -61,7 +66,11 @@ public class LocalFileManager: NSObject {
     /// - Parameter fullPath: path lfor data
     /// - Throws: error
     public func delete(_ file: File) throws {
-        try FileManager.default.removeItem(atPath: file.path!)
+        guard let path = file.path else {
+            // TODO: Make correct error.
+            throw NSError()
+        }
+        try FileManager.default.removeItem(atPath: path)
     }
     
     /// Copy File
@@ -72,7 +81,11 @@ public class LocalFileManager: NSObject {
     /// - Returns: Copied file
     /// - Throws: Error when saving file
     public func copy(_ file: File, to pathOfCopied: String) throws -> File? {
-        var copy = File(data: file.data!)
+        guard let data = file.data else {
+            // TODO: Make correct error.
+            throw NSError()
+        }
+        var copy = File(data: data)
         copy.path = pathOfCopied
         try save(copy)
         return copy

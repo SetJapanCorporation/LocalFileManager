@@ -21,8 +21,13 @@ public struct File {
     /// File type
     /// directory or file.
     public var type: FileType {
+        
         do {
-            let info: NSDictionary = try FileManager.default.attributesOfItem(atPath: path!) as NSDictionary
+            guard let path = path else {
+                // TODO: Make correct error.
+                throw NSError()
+            }
+            let info: NSDictionary = try FileManager.default.attributesOfItem(atPath: path) as NSDictionary
             if FileAttributeType(rawValue: info.fileType()!) == FileAttributeType.typeDirectory {
                 return .directory
             }
@@ -33,8 +38,11 @@ public struct File {
     }
     
     /// Name of file
-    public var name: String {
-        return path!.components(separatedBy: "/").filter({ return !$0.isEmpty }).last ?? ""
+    public var name: String? {
+        guard let path = path else {
+            return nil
+        }
+        return path.components(separatedBy: "/").filter({ return !$0.isEmpty }).last ?? ""
     }
     
     
