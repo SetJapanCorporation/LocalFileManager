@@ -17,8 +17,7 @@ public class LocalFileManager: NSObject {
     public func absolutePath(_ targetDir: FileManager.SearchPathDirectory = .libraryDirectory, path: String = "") throws -> String {
         let dirNames = path.components(separatedBy: "/")
         guard let dir = NSSearchPathForDirectoriesInDomains(targetDir, .userDomainMask, true).first else {
-            // TODO: Make correct error
-            throw NSError()
+            throw LFMError.notFoundFileOrDirectory
         }
         if path.isEmpty {
             return dir
@@ -54,8 +53,7 @@ public class LocalFileManager: NSObject {
     public func save(_ file: File) throws {
         guard let data = file.data,
             let path = file.path else {
-                // TODO: Make correct error.
-                throw NSError()
+                throw LFMError.blankPath
         }
         try data.write(to: URL(fileURLWithPath: path), options: .atomic)
         
@@ -67,8 +65,7 @@ public class LocalFileManager: NSObject {
     /// - Throws: error
     public func delete(_ file: File) throws {
         guard let path = file.path else {
-            // TODO: Make correct error.
-            throw NSError()
+            throw LFMError.blankPath
         }
         try FileManager.default.removeItem(atPath: path)
     }
