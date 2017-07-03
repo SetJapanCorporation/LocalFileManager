@@ -17,8 +17,7 @@ public class LocalFileManager: NSObject {
     public func absolutePath(_ targetDir: FileManager.SearchPathDirectory = .libraryDirectory, path: String = "") throws -> String {
         let dirNames = path.components(separatedBy: "/")
         guard let dir = NSSearchPathForDirectoriesInDomains(targetDir, .userDomainMask, true).first else {
-            // TODO: Make correct error
-            throw NSError()
+            throw LFMError.notFoundFileOrDirectory
         }
         if path.isEmpty {
             return dir
@@ -52,7 +51,11 @@ public class LocalFileManager: NSObject {
     ///   - fullPath: Where you want to save
     /// - Throws: error
     public func save(_ file: File) throws {
-        try file.data?.write(to: URL(fileURLWithPath: file.path!), options: .atomic)
+        guard let data = file.data,
+            let path = file.path else {
+                throw LFMError.blankPath
+        }
+        try data.write(to: URL(fileURLWithPath: path), options: .atomic)
         
     }
     
@@ -61,7 +64,10 @@ public class LocalFileManager: NSObject {
     /// - Parameter fullPath: path lfor data
     /// - Throws: error
     public func delete(_ file: File) throws {
-        try FileManager.default.removeItem(atPath: file.path!)
+        guard let path = file.path else {
+            throw LFMError.blankPath
+        }
+        try FileManager.default.removeItem(atPath: path)
     }
     
     /// Copy File
@@ -72,7 +78,11 @@ public class LocalFileManager: NSObject {
     /// - Returns: Copied file
     /// - Throws: Error when saving file
     public func copy(_ file: File, to pathOfCopied: String) throws -> File? {
-        var copy = File(data: file.data!)
+        guard let data = file.data else {
+            // TODO: Make correct error.
+            throw NSError()
+        }
+        var copy = File(data: data)
         copy.path = pathOfCopied
         try save(copy)
         return copy

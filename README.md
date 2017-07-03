@@ -11,7 +11,7 @@ LocalFileManager is Wrapped FileManager so that it can be used easily.
 - [x] Add comment
 - [ ] Genarate Thumbnail image
 - [ ] Throw correct error
-- [ ] Use Optional class correctly
+- [ ] Use Optional correctly
 - [ ] Test  
 
 ## Usage
