@@ -45,6 +45,11 @@ class ViewModel: NSObject {
 }
 
 extension ViewModel: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return files[indexPath.row].type == .file
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId);
         let file = files[indexPath.row]

@@ -74,10 +74,6 @@ extension ViewController: UITableViewDelegate {
         viewModel.selected(in: self, indexPath: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return viewModel.files[indexPath.row].type == .file
-    }
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delAction = UITableViewRowAction(style: .destructive, title: "Delete") {
             rowAction, indexPath in
