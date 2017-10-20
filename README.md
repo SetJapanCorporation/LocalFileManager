@@ -48,7 +48,7 @@ LocalFileManager is Wrapped FileManager so that it can be used easily.
  // Save file.
  try! fileManager.save(file)
  
- // Delete file. 
+ // Copy file. 
  let copyPath = try! fileManager.absolutePath(.libraryDirectory, path: "/hoge/fuga/img.png")
  let copiedFile = try! fileManager.copy(file, to: copyPath)
 
