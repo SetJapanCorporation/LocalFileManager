@@ -20,9 +20,13 @@ class ViewModel: NSObject {
     /// - Parameters:
     ///   - directoryPath: path
     ///   - compleation: didFinished load
-    func loadFiles(directoryPath: String, compleation: ()->Void) {
-        files = try! LocalFileManager().files(at: directoryPath)!
-        compleation()
+    func loadFiles(directoryPath: String, compleation: (Error?)->Void) {
+        do {
+            files = try LocalFileManager().files(at: directoryPath) ?? []
+            compleation(nil)
+        } catch {
+            compleation(error)
+        }
     }
     
     /// When selected tableView cell
