@@ -31,7 +31,10 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         if let file = try! File(path: dirPath) {
             self.title = file.name
-            viewModel.loadFiles(directoryPath: dirPath) {
+            viewModel.loadFiles(directoryPath: dirPath) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
                 (view as! View).table.reloadData()
             }
         }
