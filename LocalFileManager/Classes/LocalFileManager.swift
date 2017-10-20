@@ -61,7 +61,7 @@ public class LocalFileManager: NSObject {
     
     /// Delete file
     ///
-    /// - Parameter fullPath: path lfor data
+    /// - Parameter fullPath: path for data
     /// - Throws: error
     public func delete(_ file: File) throws {
         guard let path = file.path else {

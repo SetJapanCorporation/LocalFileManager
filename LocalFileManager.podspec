@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LocalFileManager'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'LocalFileManager is wraped FileManager using easyeary.'
 
 # This description is used to generate tags and improve search results.
